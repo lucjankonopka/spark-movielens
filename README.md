@@ -4,7 +4,7 @@ Technology used: *AWS (EMR on EC2, S3), Apache Spark, pyspark, python*
 
 ## Abstract
 
-The project was done as part of the Apache Spark course on Udemy, and I received a certificate for it. The goal was to analyze 27 million movie ratings for 58,000 movies provided by 280,000 users. Due to the large volume of data, I utilized a cluster of three m5.xlarge instances to process the data. I used PuTTY to log into the cluster. The outcome of the project was a list of the 10 most similar movies to "Star Wars: Episode IV - A New Hope" from 1977, along with their ratings and similarity scores/strengths.
+The project was done as part of the Apache Spark course on Udemy -> [*certificate*](https://www.udemy.com/certificate/UC-e77a4dc3-1f94-44f6-847b-b766e19da7b3/). The goal was to analyze 27 million movie ratings for 58,000 movies provided by 280,000 users. Due to the large volume of data, I utilized a cluster of three m5.xlarge instances to process the data. I used PuTTY to log into the cluster. The outcome of the project was a list of the 10 most similar movies to "Star Wars: Episode IV - A New Hope" from 1977, along with their ratings and similarity scores/strengths.
 
 ## Process
 
@@ -22,4 +22,4 @@ The project was done as part of the Apache Spark course on Udemy, and I received
 
 ## Output
 
-The outcome was a text file that presented 10 movies with the highest similarity to "Star Wars: Episode IV - A New Hope" according to the algorithm.
+The outcome was a [*text file*](https://github.com/lucjankonopka/spark-movielens/blob/main/similar_movies.txt) that presented 10 movies with the highest similarity to "Star Wars: Episode IV - A New Hope" according to the algorithm.
