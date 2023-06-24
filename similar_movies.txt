@@ -1,0 +1,11 @@
+Top 10 similar movies for Star Wars: Episode IV - A New Hope (1977) :
+Star Wars: Episode V - The Empire Str...        score: 0.9911   strength: 55975         rating: 4.13
+Star Wars: Episode VI - Return of the...        score: 0.9877   strength: 53326         rating: 3.99
+Raiders of the Lost Ark (Indiana Jone...        score: 0.9784   strength: 47418         rating: 4.12
+Band of Brothers (2001)                         score: 0.9755   strength: 793           rating: 4.40
+Star Wars: Episode VII - The Force Aw...        score: 0.9751   strength: 10292         rating: 3.79
+Rogue One: A Star Wars Story (2016)             score: 0.9747   strength: 4652          rating: 3.82
+Indiana Jones and the Last Crusade (1...        score: 0.9743   strength: 34214         rating: 3.98
+You Only Live Twice (1967)                      score: 0.9727   strength: 2490          rating: 3.61
+Great Escape, The (1963)                        score: 0.9724   strength: 9920          rating: 4.10
+Enter the Dragon (1973)                         score: 0.9720   strength: 2845          rating: 3.77
