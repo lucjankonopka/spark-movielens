@@ -16,7 +16,7 @@ The project was done as part of the Apache Spark course on Udemy -> [*certificat
 6. Reviewing the data
 
 
-## Python script:
+## Source code
 
 [*movie-similarities-27m.py*](https://github.com/lucjankonopka/spark-movielens/blob/main/movie-similarities-27m.py)
 
