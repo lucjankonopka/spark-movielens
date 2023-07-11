@@ -1,7 +1,9 @@
+import sys
+
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as func
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, FloatType
-import sys
+
 
 # Calculate cosine similarity
 def computeCosineSimilarity(spark, data):
