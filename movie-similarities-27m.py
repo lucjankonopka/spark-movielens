@@ -9,21 +9,21 @@ from pyspark.sql.types import (
 )
 import sys
 
+
 # Calculate cosine similarity
 def computeCosineSimilarity(spark, data):
     # Compute xx, xy and yy columnsmm
     pairScores = (
-      data.withColumn("xx", func.col("rating1") * func.col("rating1"))
-      .withColumn("yy", func.col("rating2") * func.col("rating2"))
-      .withColumn("xy", func.col("rating1") * func.col("rating2"))
+        data.withColumn("xx", func.col("rating1") * func.col("rating1"))
+        .withColumn("yy", func.col("rating2") * func.col("rating2"))
+        .withColumn("xy", func.col("rating1") * func.col("rating2"))
     )
-    
+
     # Compute numerator, denominator and numPairs columns
     calculateSimilarity = pairScores.groupBy("movie1", "movie2").agg(
         func.sum(func.col("xy")).alias("numerator"),
         (
-            func.sqrt(func.sum(func.col("xx"))) * 
-            func.sqrt(func.sum(func.col("yy")))
+            func.sqrt(func.sum(func.col("xx"))) * func.sqrt(func.sum(func.col("yy")))
         ).alias("denominator"),
         func.count(func.col("xy")).alias("numPairs"),
     )
@@ -35,7 +35,7 @@ def computeCosineSimilarity(spark, data):
             func.col("denominator") != 0,
             func.col("numerator") / func.col("denominator"),
         ).otherwise(0),
-      ).select("movie1", "movie2", "score", "numPairs")
+    ).select("movie1", "movie2", "score", "numPairs")
 
     return result
 
@@ -50,6 +50,7 @@ def getMovieName(movieNames, movieID):
 
     return result[0]
 
+
 # Get avg rating by given movie id
 def getMovieAvgRating(movies, movieID):
     avg_rating = (
@@ -57,7 +58,7 @@ def getMovieAvgRating(movies, movieID):
         .select(func.sum("rating")/func.count("rating"))
         .collect()[0]
     )
-    
+
     return avg_rating[0]
 
 
@@ -117,7 +118,6 @@ if __name__ == "__main__":
         )
     )
 
-
     moviePairSimilarities = computeCosineSimilarity(spark, moviePairs).cache()
 
     # Run script only if the sys.argv is given
@@ -159,34 +159,34 @@ if __name__ == "__main__":
                 break
             # Display the similarity result that isn't the movie we're looking at
             similarMovieID = result.movie1
-            if (similarMovieID == movieID):
+            if similarMovieID == movieID:
                 similarMovieID = result.movie2
-            
+
             # Get movie average rating
             movieAvgRating = getMovieAvgRating(movies, similarMovieID)
             if movieAvgRating < ratingThreshold:
                 continue
-            
+
             # Increase counter if movie meets the ratingThreshold requirement
             counter += 1
-            
+
             # Find movie name by it's ID
             movie_name = getMovieName(movieNames, similarMovieID)
-            
+
             # Format the name to fit the schema
             if len(movie_name) > 40:
                 movie_name = movie_name[:37] + "..."
-                
+
             formatted_name = "{:<40}".format(movie_name)
             formatted_score = "{:<6.4f}".format(result.score)
             formatted_strength = "{:<6}".format(result.numPairs)
             formatted_rating = "{:<6.2f}".format(movieAvgRating)
-            
+
             # Output whole result according to the following
             output_result = "{} \tscore: {} \tstrength: {} \trating: {}".format(formatted_name, formatted_score, formatted_strength, formatted_rating)
             print(output_result)
             output.append(output_result)
-            
+
         # Write output to a text file
         with open("similar_movies.txt", "w") as f:
             f.write("\n".join(output))
