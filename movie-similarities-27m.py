@@ -55,7 +55,7 @@ def getMovieName(movieNames, movieID):
 def getMovieAvgRating(movies, movieID):
     avg_rating = (
         movies.filter(func.col("movieID") == movieID)
-        .select(func.sum("rating")/func.count("rating"))
+        .select(func.sum("rating") / func.count("rating"))
         .collect()[0]
     )
 
@@ -109,7 +109,7 @@ if __name__ == "__main__":
             movies.alias("ratings2"),
             (func.col("ratings1.userId") == func.col("ratings2.userId"))
             & (func.col("ratings1.movieId") < func.col("ratings2.movieId")),
-        ) 
+        )
         .select(
             func.col("ratings1.movieId").alias("movie1"),
             func.col("ratings2.movieId").alias("movie2"),
@@ -183,12 +183,14 @@ if __name__ == "__main__":
             formatted_rating = "{:<6.2f}".format(movieAvgRating)
 
             # Output whole result according to the following
-            output_result = "{} \tscore: {} \tstrength: {} \trating: {}".format(formatted_name, formatted_score, formatted_strength, formatted_rating)
+            output_result = "{} 	score: {} 	strength: {} 	rating: {}".format(
+                formatted_name, formatted_score, formatted_strength, formatted_rating
+            )
             print(output_result)
             output.append(output_result)
 
         # Write output to a text file
         with open("similar_movies.txt", "w") as f:
             f.write("\n".join(output))
-            
+
     spark.stop()
