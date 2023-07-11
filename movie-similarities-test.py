@@ -64,7 +64,11 @@ def getMovieAvgRating(movies, movieID):
 
 if __name__ == "__main__":
     # Configure Spark
-    spark = SparkSession.builder.appName("MovieSimilarities").master("local[*]").getOrCreate()
+    spark = (
+        SparkSession.builder.appName("MovieSimilarities")
+        .master("local[*]")
+        .getOrCreate()
+    )
 
     # Create schemas
     movieNamesSchema = StructType(
