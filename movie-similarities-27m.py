@@ -1,7 +1,6 @@
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as func
-from pyspark.sql.types import 
-(
+from pyspark.sql.types import (
     StructType,
     StructField,
     StringType,
@@ -73,7 +72,7 @@ if __name__ == "__main__":
             StructField("movieTitle", StringType(), True),
         ]
     )
-        
+
     moviesSchema = StructType(
         [
             StructField("userID", IntegerType(), True),
@@ -81,8 +80,7 @@ if __name__ == "__main__":
             StructField("rating", FloatType(), True),
         ]
     )
-        
-        
+
     # Create a broadcast dataset of movieID and movieTitle.
     # Apply ISO-885901 charset
     movieNames = (
@@ -142,17 +140,16 @@ if __name__ == "__main__":
             )
         )
 
-
         # Sort by quality score and take top 100 movies (for the further filtering of top x (numOfSimilarities) movies)
         results = filteredResults.sort(func.col("score").desc()).take(100)
-        
+
         # Prepare output title
         output = []
         output_txt = f"Top {numOfSimilarities} similar movies for {getMovieName(movieNames, movieID)} :"
         output.append(output_txt)
 
         print(output_txt)
-        
+
         # Counter for output results wanted
         counter = 0
 
@@ -164,7 +161,7 @@ if __name__ == "__main__":
             similarMovieID = result.movie1
             if (similarMovieID == movieID):
                 similarMovieID = result.movie2
-
+            
             # Get movie average rating
             movieAvgRating = getMovieAvgRating(movies, similarMovieID)
             if movieAvgRating < ratingThreshold:
@@ -172,14 +169,14 @@ if __name__ == "__main__":
             
             # Increase counter if movie meets the ratingThreshold requirement
             counter += 1
-
+            
             # Find movie name by it's ID
             movie_name = getMovieName(movieNames, similarMovieID)
-
+            
             # Format the name to fit the schema
             if len(movie_name) > 40:
                 movie_name = movie_name[:37] + "..."
-
+                
             formatted_name = "{:<40}".format(movie_name)
             formatted_score = "{:<6.4f}".format(result.score)
             formatted_strength = "{:<6}".format(result.numPairs)
@@ -189,7 +186,7 @@ if __name__ == "__main__":
             output_result = "{} \tscore: {} \tstrength: {} \trating: {}".format(formatted_name, formatted_score, formatted_strength, formatted_rating)
             print(output_result)
             output.append(output_result)
-
+            
         # Write output to a text file
         with open("similar_movies.txt", "w") as f:
             f.write("\n".join(output))
