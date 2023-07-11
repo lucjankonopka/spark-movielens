@@ -25,6 +25,5 @@ movies to "Star Wars: Episode IV - A New Hope" from 1977, along with their ratin
 
 ## Output
 
-The outcome was a 
-[*text file*](https://github.com/lucjankonopka/spark-movielens/blob/main/similar_movies.txt)
+The outcome was a [*text file*](https://github.com/lucjankonopka/spark-movielens/blob/main/similar_movies.txt)
 that presented 10 movies with the highest similarity to "Star Wars: Episode IV - A New Hope" according to the algorithm.
