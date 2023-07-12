@@ -23,6 +23,18 @@ movies to "Star Wars: Episode IV - A New Hope" from 1977, along with their ratin
 
 [*movie-similarities-27m.py*](https://github.com/lucjankonopka/spark-movielens/blob/main/movie-similarities-27m.py)
 
+## Algorithm
+
+The score was calculated using cosine similarity as a measure of similarity between the two given movies, 
+whose ratings are used here as similarity vectors:
+![alt text](https://www.machinelearningplus.com/wp-content/uploads/2018/10/Cosine-Similarity-Formula-1.png)
+
+The strength of similarity means the number of occurrences of a given pair. 
+The rating is the average rating of a given movie.
+
+Any movie in the available database could be used for the similarity comparison. 
+The selection of the movie took place after giving its ID as a command-line argument.
+
 ## Output
 
 The outcome was a
