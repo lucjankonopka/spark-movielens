@@ -30,7 +30,7 @@ whose ratings are used here as similarity vectors:
 ![alt text](https://www.machinelearningplus.com/wp-content/uploads/2018/10/Cosine-Similarity-Formula-1.png)
 
 The strength of similarity means the number of occurrences of a given pair. 
-The rating is the average rating of a given movie.
+The rating is the average rating of a given movie. 
 
 Any movie in the available database could be used for the similarity comparison. 
 The selection of the movie took place after giving its ID as a command-line argument.
