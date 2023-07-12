@@ -7,7 +7,7 @@ Technology used: *AWS (EMR on EC2, S3), Apache Spark, pyspark, python*
 The main goal of the project was to analyze 27 million movie ratings for 58,000 movies provided by 280,000 users.
 Due to the large volume of data, I utilized a cluster of three m5.xlarge instances to process the data.
 I used PuTTY to log into the cluster. The outcome of the project was a list of the 10 most similar
-movies to "Star Wars: Episode IV - A New Hope" from 1977, along with their ratings and similarity scores/strengths.
+movies to "Star Wars: Episode IV - A New Hope" from 1977, along with their ratings and similarity scores/strengths. 
 
 ## Process
 
